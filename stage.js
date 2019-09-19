@@ -10,7 +10,10 @@ var counterTimesUp=0;
 var perScound=30;
 var initailPosition=450;
 var obs;
+var score;
+
 window.obtcls=[];
+
 
 var paths=['https://www.pngkey.com/png/full/8-85541_green-cartoon-drawing-grass-cartoon-png.png',
 'https://img.123clipartpng.com/rock-clipart-rocks-clipart-png-2400_2171.png',
@@ -53,13 +56,9 @@ ob=makeObslecals(50,50,'obselcals');
 	 
 obtcls.push('imgnum'+i)
 }
-//obtcls =$('.obselcals');
-//obtcls[0].position()
-console.log(obtcls[0])
-// to return window scrolling to 0
+
 window.scrollTo(0,0);
 
-//$('#contaner').animate({"left": "+=100px"}, 10000, "linear");
 
 $(document).keydown (function(e){	
 keys[e.keyCode]=true;
@@ -97,11 +96,6 @@ for(var i = 0 ; i< obtcls.length ; i++){
 	if(shuna.position().left > $("#"+obtcls[i]).position().left-$("#"+obtcls[i]).width()/2 && 
 		shuna.position().left  < $("#"+obtcls[i]).position().left+$("#"+obtcls[i]).width()/2  ){
 		$("#"+obtcls[i]).hide();
-		// if(obtcls.length<0)
-		//  obtcls.shift()
-		// if(obtcls.length===0){
-		// 	clearInterval();
-		// 	alert("Game Over");
 
 		
 }

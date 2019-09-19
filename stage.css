@@ -22,3 +22,12 @@ body{
 	width: 30%;
 	top:300;
 	}
+#infoBar{
+	position: static;
+	float: left;                  
+	width: 100%;
+	height: 50px;
+	background-image: url(..//recources//6.png);
+	z-index: 2;
+
+}
