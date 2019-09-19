@@ -12,9 +12,10 @@ var initailPosition=450;
 var obs;
 window.obtcls=[];
 
-var paths=['http://www.clker.com/cliparts/H/W/2/X/1/1/brown-log-with-green-leaf.svg',
+var paths=['https://www.pngkey.com/png/full/8-85541_green-cartoon-drawing-grass-cartoon-png.png',
 'https://img.123clipartpng.com/rock-clipart-rocks-clipart-png-2400_2171.png',
-'https://purepng.com/public/uploads/large/purepng.com-cactusplantcactuscacticactaceae-1411526817042a1t8g.png']
+'https://clipartion.com/wp-content/uploads/2015/11/cartoon-carrot-clipart-free-clip-art-images.png'
+,'http://www.pngmart.com/files/3/Cartoon-Coin-Transparent-Background.png']
 
 
 function makeObslecals( height, width,css){
@@ -42,13 +43,13 @@ function RandomPositionX(){
 }
 
 
-debugger
+
 for(var i =0 ; i<paths.length ; i++){
 ob=makeObslecals(50,50,'obselcals');
 
 	 $('body').append("<div class='"+ ob.css+"' id='imgnum"+i+"'><img src='"+ob.img +"'style='width:"+ob.width+"px; height:"+ob.height+"px;'></div>");
 	 $('#imgnum'+i).css("left",ob.left);
-	 $('#imgnum'+i).css("top",450);
+	 $('#imgnum'+i).css("top",500);
 	 
 obtcls.push('imgnum'+i)
 }
@@ -87,16 +88,25 @@ function getDown(e){
 
 
 setInterval( movment , 5000/perScound );
-
+var shuna=$('#shaun');
+var obst=$("#"+obtcls[0]);
 
 function movment() {
 
-//console.log($('#shaun').position().top + " "+ "shaun");
-console.log(obtcls[0].position() + " "+ "obstecals");
+for(var i = 0 ; i< obtcls.length ; i++){
+	if(shuna.position().left > $("#"+obtcls[i]).position().left-$("#"+obtcls[i]).width()/2 && 
+		shuna.position().left  < $("#"+obtcls[i]).position().left+$("#"+obtcls[i]).width()/2  ){
+		$("#"+obtcls[i]).hide();
+		// if(obtcls.length<0)
+		//  obtcls.shift()
+		// if(obtcls.length===0){
+		// 	clearInterval();
+		// 	alert("Game Over");
 
-		// for(var i = 0 ; i< obtcls[i].length ; i++){
 		
-		// }
+}
+		
+		}
   // 				 }
     if (keys[37]) {
 			 xPosti-=20;
