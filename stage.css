@@ -1,0 +1,18 @@
+#shaun{
+	position: relative;
+	width: 20%;
+	height: 20%;
+	top:  450px;
+	left: 50;
+}
+body{
+	position: relative;
+  background-image: url("https://st2.depositphotos.com/5479200/10565/v/950/depositphotos_105657984-stock-illustration-farm-game-background.jpg"); 
+  background-color: #cccccc;
+  height: 600px; 
+  width: 110%;
+  background-position: center; 
+  background-repeat: repeat-x; 
+  z-index: -1;
+  background-size:auto; 
+}
