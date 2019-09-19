@@ -45,12 +45,15 @@ function RandomPositionX(){
 debugger
 for(var i =0 ; i<paths.length ; i++){
 ob=makeObslecals(50,50,'obselcals');
-	//var str ="<div class='"+ob.css+"  ><img src="+ ob.img+"></div>";
+
 	 $('body').append("<div class='"+ ob.css+"' id='imgnum"+i+"'><img src='"+ob.img +"'style='width:"+ob.width+"px; height:"+ob.height+"px;'></div>");
 	 $('#imgnum'+i).css("left",ob.left);
-	 $('.obselcals').css("top",300);
+	 $('#imgnum'+i).css("top",450);
+	 
 
 }
+obtcls =$('.obselcals');
+console.log(obtcls)
 // to return window scrolling to 0
 window.scrollTo(0,0);
 
@@ -87,8 +90,13 @@ setInterval( movment , 5000/perScound );
 
 function movment() {
 
-	
-   
+//console.log($('#shaun').position().top + " "+ "shaun");
+//console.log(obtcls[0].position() + " "+ "obstecals");
+
+		// for(var i = 0 ; i< obtcls[i].length ; i++){
+		
+		// }
+  // 				 }
     if (keys[37]) {
 			 xPosti-=20;
 			$('#shaun').css("left",xPosti);   
@@ -96,7 +104,7 @@ function movment() {
     else if ( keys[39]) {
     	if($('#shaun').position().left>window.innerWidth){
     		xPosti-=20;
-    		window.animate(window.scrollBy(window.scrollY+200,window.scrollY),100)
+    		//window.animate(window.scrollBy(window.scrollY+200,window.scrollY),100)
       	 //window.scrollBy(indow.scrollY+200,window.scrollY);
 
     	}
