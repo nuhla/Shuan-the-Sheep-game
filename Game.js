@@ -1,5 +1,5 @@
 
-
+$(document).ready(function(){
 
 var content = $('#shaun');
 var keys={};
@@ -9,20 +9,54 @@ var tPosition=$('#shaun').position().top;
 var counterTimesUp=0;
 var perScound=30;
 var initailPosition=450;
+var obs;
+window.obtcls=[];
 
-var strgs=[];
-var paths=['https://img.123clipartpng.com/rock-clipart-rocks-clipart-png-2400_2171.png','https://img.123clipartpng.com/rock-clipart-rocks-clipart-png-2400_2171.png']
+var paths=['http://www.clker.com/cliparts/H/W/2/X/1/1/brown-log-with-green-leaf.svg',
+'https://img.123clipartpng.com/rock-clipart-rocks-clipart-png-2400_2171.png',
+'https://purepng.com/public/uploads/large/purepng.com-cactusplantcactuscacticactaceae-1411526817042a1t8g.png']
 
 
+function makeObslecals( height, width,css){
+
+return { 
+img :paths[randObImg()],
+height:height,
+width:width,
+css:"obselcals",
+left:RandomPositionX(),
+top:300,
+
+}
+}
 
 
+function randObImg(){
+num = Math.floor(Math.random()*paths.length)
+return num;
+}
+
+function RandomPositionX(){
+	num = Math.floor(Math.random()*(window.innerWidth)+100);
+	return num;
+}
 
 
-window.scrollTo(0,0);// to return window scrolling to 0
-$('#contaner').animate({"left": "+=100px"}, 10000, "linear");
+debugger
+for(var i =0 ; i<paths.length ; i++){
+ob=makeObslecals(50,50,'obselcals');
+	//var str ="<div class='"+ob.css+"  ><img src="+ ob.img+"></div>";
+	 $('body').append("<div class='"+ ob.css+"' id='imgnum"+i+"'><img src='"+ob.img +"'style='width:"+ob.width+"px; height:"+ob.height+"px;'></div>");
+	 $('#imgnum'+i).css("left",ob.left);
+	 $('.obselcals').css("top",300);
 
-$(document).keydown (function(e){
-	
+}
+// to return window scrolling to 0
+window.scrollTo(0,0);
+
+//$('#contaner').animate({"left": "+=100px"}, 10000, "linear");
+
+$(document).keydown (function(e){	
 keys[e.keyCode]=true;
 }) 
 
@@ -40,30 +74,33 @@ function getDown(e){
 		tPosition=initailPosition;
 
 		$('#shaun').css("top",initailPosition);
-		$('#shaun').css("left",xPosti+30);
-		xxPosti=xPosti+30;
+		$('#shaun').css("left",xPosti+20);
+		xxPosti=xPosti+20;
 
 	}
 		
 	}
 
 
-var stop=setInterval( movment , 5500/perScound );
+setInterval( movment , 5000/perScound );
 
 
 function movment() {
 
-	if($('#shaun'))
+	
    
     if (keys[37]) {
-			 xPosti-=17;
+			 xPosti-=20;
 			$('#shaun').css("left",xPosti);   
     }
     else if ( keys[39]) {
-    	if($('#shaun').position().left>window.innerWidth)
-    		xPosti-=17;
-       xPosti+=17;
-      
+    	if($('#shaun').position().left>window.innerWidth){
+    		xPosti-=20;
+    		window.animate(window.scrollBy(window.scrollY+200,window.scrollY),100)
+      	 //window.scrollBy(indow.scrollY+200,window.scrollY);
+
+    	}
+      xPosti+=20;
 
 			$('#shaun').css("left",xPosti); 
 
@@ -73,13 +110,14 @@ function movment() {
     }
     else if (keys[38]) { 
     
-    	 tPosition-=17;
-    	 xPosti +=17;
+    	 tPosition-=20;
+    	 xPosti +=20;
     
     	if($('#shaun').position().top>500)
-    		tPosition+=17;
+    		tPosition+=20;
 			$('#shaun').css("top",tPosition);
 		  $('#shaun').css("left",xPosti); 
     }
 
 }
+})

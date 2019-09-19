@@ -1,7 +1,7 @@
 #shaun{
 	position: relative;
-	width: 20%;
-	height: 20%;
+	width: 30%;
+	height: 30%;
 	top:  450px;
 	left: 50;
 }
@@ -10,9 +10,14 @@ body{
   background-image: url("https://st2.depositphotos.com/5479200/10565/v/950/depositphotos_105657984-stock-illustration-farm-game-background.jpg"); 
   background-color: #cccccc;
   height: 600px; 
-  width: 110%;
+  width: 100%;
   background-position: center; 
   background-repeat: repeat-x; 
   z-index: -1;
   background-size:auto; 
 }
+.obselcals{
+	position: relative;
+	height: 30%;
+	width: 30%;
+	}
