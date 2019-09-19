@@ -50,10 +50,11 @@ ob=makeObslecals(50,50,'obselcals');
 	 $('#imgnum'+i).css("left",ob.left);
 	 $('#imgnum'+i).css("top",450);
 	 
-
+obtcls.push('imgnum'+i)
 }
-obtcls =$('.obselcals');
-console.log(obtcls)
+//obtcls =$('.obselcals');
+//obtcls[0].position()
+console.log(obtcls[0])
 // to return window scrolling to 0
 window.scrollTo(0,0);
 
@@ -91,7 +92,7 @@ setInterval( movment , 5000/perScound );
 function movment() {
 
 //console.log($('#shaun').position().top + " "+ "shaun");
-//console.log(obtcls[0].position() + " "+ "obstecals");
+console.log(obtcls[0].position() + " "+ "obstecals");
 
 		// for(var i = 0 ; i< obtcls[i].length ; i++){
 		
