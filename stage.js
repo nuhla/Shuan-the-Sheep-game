@@ -1,33 +1,36 @@
 
 $(document).ready(function(){
-
-var content = $('#shaun');
 var keys={};
+var contantWidt= window.innerWidth;
 
-var xPosti= $('#shaun').position().left;
+$('.contant').width(contantWidt);
+
+
+var xPosti= 0;
 var tPosition=$('#shaun').position().top;
+
 var counterTimesUp=0;
 var perScound=30;
 var initailPosition=450;
 var obs;
 window.obtcls=[];
 
-var paths=['http://www.clker.com/cliparts/H/W/2/X/1/1/brown-log-with-green-leaf.svg',
-'https://img.123clipartpng.com/rock-clipart-rocks-clipart-png-2400_2171.png',
-'https://purepng.com/public/uploads/large/purepng.com-cactusplantcactuscacticactaceae-1411526817042a1t8g.png']
+var paths=['recources/Gaming-Agency.png',
+'recources/wall-o-fire-1.gif',
+'recources/ee8f3d409243a8fdf1104e2ee99f0581_fire-and-brooklyn-on-pinterest-flame-clipart-with-transparent-_480-272.gif']
 
 
-function makeObslecals( height, width,css){
+function makeObslecals( height, width,css,top){
 
 return { 
-img :paths[randObImg()],
-height:height,
-width:width,
-css:"obselcals",
-left:RandomPositionX(),
-top:300,
+	img :paths[randObImg()],
+	height:height,
+	width:width,
+	css:"obselcals",
+	left:RandomPositionX(),
+	top:top,
 
-}
+	}
 }
 
 
@@ -37,28 +40,32 @@ return num;
 }
 
 function RandomPositionX(){
-	num = Math.floor(Math.random()*(window.innerWidth)+100);
-	return num;
-}
-
-
 debugger
-for(var i =0 ; i<paths.length ; i++){
-ob=makeObslecals(50,50,'obselcals');
+	num = Math.floor(Math.random()*(contantWidt));
 
-	 $('body').append("<div class='"+ ob.css+"' id='imgnum"+i+"'><img src='"+ob.img +"'style='width:"+ob.width+"px; height:"+ob.height+"px;'></div>");
-	 $('#imgnum'+i).css("left",ob.left);
-	 $('#imgnum'+i).css("top",450);
-	 
-obtcls.push('imgnum'+i)
+	if(num> 100)
+	return num;
+	return RandomPositionX();
 }
-//obtcls =$('.obselcals');
-//obtcls[0].position()
-console.log(obtcls[0])
-// to return window scrolling to 0
-window.scrollTo(0,0);
 
-//$('#contaner').animate({"left": "+=100px"}, 10000, "linear");
+
+
+for(var i =0 ; i<paths.length ; i++){
+	ob=makeObslecals(50,50,'obselcals',300);
+
+	 $('body').append("<div class='"+ ob.css+"' id='imgnum"+i+"'><img  src='"+ob.img +"'style='width:"+ob.width+"px; height:"+ob.height+"px;'></div>");
+	 $('#imgnum'+i).css("left",ob.left);
+	 $('#imgnum'+i).css("top",460);
+	
+	obtcls.push('imgnum'+i)
+}
+
+// this event to prevent the window from scrolling
+window.addEventListener("scroll",function(){
+	// return it always to point 0 0 
+	window.scrollTo(0,0)
+})
+
 
 $(document).keydown (function(e){	
 keys[e.keyCode]=true;
@@ -73,60 +80,60 @@ $(document).keyup(function(e){
 })
 
 function getDown(e){
+	//debugger
 		if(e.keyCode ===38)
 	{
 		tPosition=initailPosition;
 
 		$('#shaun').css("top",initailPosition);
 		$('#shaun').css("left",xPosti+20);
-		xxPosti=xPosti+20;
+		xPosti=xPosti+20;
 
 	}
 		
 	}
 
 
-setInterval( movment , 5000/perScound );
-
+setInterval( movment , 3000/perScound );
+var shuna=$('#shaun');
 
 function movment() {
 
-//console.log($('#shaun').position().top + " "+ "shaun");
-console.log(obtcls[0].position() + " "+ "obstecals");
-
-		// for(var i = 0 ; i< obtcls[i].length ; i++){
-		
-		// }
-  // 				 }
-    if (keys[37]) {
-			 xPosti-=20;
-			$('#shaun').css("left",xPosti);   
-    }
-    else if ( keys[39]) {
-    	if($('#shaun').position().left>window.innerWidth){
-    		xPosti-=20;
-    		//window.animate(window.scrollBy(window.scrollY+200,window.scrollY),100)
-      	 //window.scrollBy(indow.scrollY+200,window.scrollY);
-
-    	}
-      xPosti+=20;
-
-			$('#shaun').css("left",xPosti); 
-
+//search for the obst that touch's shuna between a range of the obsecal size
+	for(var i = 0 ; i< obtcls.length ; i++){
+		if(shuna.position().left > $("#"+obtcls[i]).position().left-$("#"+obtcls[i]).width() && 
+			shuna.position().left  < $("#"+obtcls[i]).position().left+$("#"+obtcls[i]).width() &&
+			shuna.position().top  < $("#"+obtcls[i]).position().top+$("#"+obtcls[i]).height()/2  &&
+			shuna.position().top > $("#"+obtcls[i]).position().top-$("#"+obtcls[i]).height()/2){
+					/// if we found it then hide();
+					$("#"+obtcls[i]).hide();
 		}
-    else if ( keys[40]) {
-        
-    }
-    else if (keys[38]) { 
-    
-    	 tPosition-=20;
-    	 xPosti +=20;
-    
-    	if($('#shaun').position().top>500)
-    		tPosition+=20;
-			$('#shaun').css("top",tPosition);
-		  $('#shaun').css("left",xPosti); 
-    }
+	}
+  
+  if (keys[37]) {
+		xPosti-=20;
+		$('#shaun').css("left",xPosti);   
+  }
+  else if ( keys[39]) {
+    if($('#shaun').position().left>window.innerWidth ){
+    xPosti-=xPosti;
+  }
+    xPosti+=20;
+		$('#shaun').css("left",xPosti); 
+		//$('#shaun').motion()
+	}
+  else if ( keys[40])
+  {     
+  }
+  else if (keys[38]) 
+  { 
+ 	  tPosition-=20;
+  	xPosti +=20;
+  if($('#shaun').position().top>500)
+    tPosition+=20;
+		$('#shaun').css("top",tPosition);
+		$('#shaun').css("left",xPosti); 
+  }
 
 }
 })

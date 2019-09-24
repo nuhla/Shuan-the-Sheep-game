@@ -1,24 +1,128 @@
+
 #shaun{
 	position: relative;
-	width: 30%;
-	height: 30%;
 	top:  450px;
-	left: 50;
 }
+#shaun img{
+	
+	width: 15%;
+	height: 15%;
+	
+	
+}
+
+
 body{
-	position: relative;
-  background-image: url("https://st2.depositphotos.com/5479200/10565/v/950/depositphotos_105657984-stock-illustration-farm-game-background.jpg"); 
+	 overflow: auto;
+	 position: relative;
+	 padding: 0 0 0 0 ;
+	 margin: 0 0 0 0;
+}
+#scd{
+
+
+  font-family: Comic Sans MS;
+	display: inline-flex;
+	position:absolute;
+	
+	opacity: 1;
+	height: 200px;
+	top: 0px;
+	width: 100%;
+    z-index: 2;
+	text-align: center;
+
+
+	background-image: url('\recources\\6.png');
+
+	
+}
+#frs{
+	vertical-align:middle;
+	text-align: center;
+	position:absolute;
+	background-color: #056d96;
+	height: 4%;
+	width: 100%;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  box-shadow: 1px 12px 2px 1px rgba(133, 108, 27, .2);
+
+}
+
+#third{
+	vertical-align:middle;
+	position:absolute;
+	height: 4%;
+	width: 100%;
+  z-index: 105;
+  top: 30px;
+  left: 0px;
+  padding: 5px;
+
+}
+.btn{
+	text-align: center;
+	display:inline-flex;
+	background-image: linear-gradient(#0082b5, #015373);
+	height: 100%;
+	width: 10%;
+  z-index: 101; 
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-left-color: #3c6b80;
+  border-bottom-style: solid;
+  border-bottom-width: .5px;
+  border-bottom-color: #CFAF43;
+  border-right-style: solid;
+  border-right-width: .5px;
+  border-right-color: #CFAF43;
+  box-shadow: 1px 5px 2px 1px rgba(133, 108, 27, .2);
+  padding: 0 0 0 0 ;
+	margin: 0 0 0 0;
+
+}
+a {
+		text-align: center;
+		width: 100%;
+		font-family: Comic Sans MS;
+		color: #CFAF43;
+
+}
+
+.btn:hover{ 
+   	background-image: linear-gradient(#071d26, #015373);
+ } 
+
+
+ .slider{
+ 	width: 30%;
+ 	background-color:#CFAF43;
+ 	height: 30px;
+ 	z-index: 103; 
+ }
+
+.contant {
+	border-top-style: solid;
+	border-width: 2px 2px 2px 2px;
+  border-color: #cccccc;
+  display: inline-flex;
+  background-image: url('\recources\\4.png'); 
   background-color: #cccccc;
   height: 600px; 
-  width: 100%;
+
+ 
   background-position: center; 
-  background-repeat: repeat-x; 
   z-index: -1;
-  background-size:auto; 
+  
 }
 .obselcals{
 	position: absolute;
-	height: 30%;
-	width: 30%;
-	top:300;
-	}
+}
+
+img{
+	height: 40%;
+	width: 40%;
+}
+
