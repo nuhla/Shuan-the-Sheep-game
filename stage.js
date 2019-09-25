@@ -8,11 +8,13 @@ $('.contant').width(contantWidt);
 
 var xPosti= 0;
 var tPosition=$('#shaun').position().top;
+var IniSliderCount =$('#slider').width();
+console.log(IniSliderCount);
 
 var counterTimesUp=0;
 var perScound=30;
 var initailPosition=450;
-var obs;
+var obs=[];
 window.obtcls=[];
 
 var paths=['recources/Gaming-Agency.png',
@@ -20,7 +22,7 @@ var paths=['recources/Gaming-Agency.png',
 'recources/ee8f3d409243a8fdf1104e2ee99f0581_fire-and-brooklyn-on-pinterest-flame-clipart-with-transparent-_480-272.gif']
 
 
-function makeObslecals( height, width,css,top){
+function makeObslecals( height, width,css,top,dangerDegree){
 
 return { 
 	img :paths[randObImg()],
@@ -29,6 +31,7 @@ return {
 	css:"obselcals",
 	left:RandomPositionX(),
 	top:top,
+	dangerDegree:dangerDegree
 
 	}
 }
@@ -40,7 +43,6 @@ return num;
 }
 
 function RandomPositionX(){
-debugger
 	num = Math.floor(Math.random()*(contantWidt));
 
 	if(num> 100)
@@ -51,7 +53,8 @@ debugger
 
 
 for(var i =0 ; i<paths.length ; i++){
-	ob=makeObslecals(50,50,'obselcals',300);
+	ob=makeObslecals(50,50,'obselcals',300,30);
+	obs.push(ob);
 
 	 $('body').append("<div class='"+ ob.css+"' id='imgnum"+i+"'><img  src='"+ob.img +"'style='width:"+ob.width+"px; height:"+ob.height+"px;'></div>");
 	 $('#imgnum'+i).css("left",ob.left);
@@ -77,6 +80,11 @@ $(document).keyup(function(e){
 	delete keys[e.keyCode];
 	getDown(e);
 
+})
+
+$('#abutBtn').on('click',function(){
+	str="<div class='infoBox'><p>this game is created in 2019 using a simple jquery and javascrip functionality . if the sheep touch the opstecals in the road his health will decreas tell it dei</p> </div>"
+	$('body').append(str);
 })
 
 function getDown(e){
@@ -107,6 +115,14 @@ function movment() {
 			shuna.position().top > $("#"+obtcls[i]).position().top-$("#"+obtcls[i]).height()/2){
 					/// if we found it then hide();
 					$("#"+obtcls[i]).hide();
+					// if we still have soual
+					if($('#slider').width()>0  ){
+						//if the width of the slider is smaller than the half we neen to chang it color to show danger degree
+						if($('#slider').width()< IniSliderCount/2)
+							$('#slider').animate( {backgroundColor:"#aa0000",color: "#fff"}, 500 );
+					// calculate the degree of loss of shuna helth
+					$('#slider').width($('#slider').width()-(IniSliderCount*obs[i]['dangerDegree']) / 100);
+				}
 		}
 	}
   
