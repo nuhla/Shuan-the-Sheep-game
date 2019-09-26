@@ -48,38 +48,57 @@ background-size: cover;
 }
 
 #third{
-	vertical-align:middle;
+
+	text-align: center;
 	position:absolute;
 	height: 4%;
-	width: 30%;
+	width: 100%;
   z-index: 105;
   top: 30px;
-  left: 0px;
-  padding: 5px;
+  
+  padding: 16px;
 
 }
 #helthPar{
 	text-align: center;
 	vertical-align: middle;
-	width: 100%;
-	height:30px;
+	width: 40%;
+	height:15px;
 	position:absolute;
 	background-color: #056d96;
 	z-index: 105;
+	border-radius: 8px;
 }
  #slider{
  	position: static;
  	top: 15px;
- 	width: 100%;
- 	background-color:#CFAF43;
- 	height: 90%;
+ 	width: 97%;
+ 	background-image: linear-gradient(to left,#fffb00,  #fc5d00,#a61212,#8c0000);
+ 	height: 60%;
  	z-index: 106; 
+ 	margin:  5px;
+ 	border-style: solid;
+ 	border-width: 1px;
+ 	border-top-color: #a61212;
+ 	border-radius: 5px;
+ }
+
+ #closeDiv{
+ 	position: absolute;
+ 	top: -20px;
+ 	left: -15px;
+ 	left: 0;
+ 	width: 10%;
+ 	height: 10%;
+ 	z-index: 110;
+
+
  }
 
 .btn{
 	text-align: center;
 	display:inline-flex;
-	background-image: linear-gradient(#0082b5, #015373);
+	background-image: linear-gradient( #0082b5, #015373);
 	height: 100%;
 	width: 10%;
   z-index: 101; 
@@ -116,23 +135,30 @@ p{
  } 
 
 .infoBox{
-
+	
 	vertical-align:middle;
 	text-align: center;
 	position:absolute;
 	background-color: #ffffff ;
-	height: 50%;
-	width: 50%;
+	height: 0%;
+	width: 0%;
   z-index: 109;
   top: 50px;
-  left: 300px;
-  box-shadow: 1px 12px 2px 1px rgba(133, 108, 27, .2);
+  left: 350px;
+  box-shadow: 1px 7px 7px 1px rgba(195, 224, 217, .5);
   border-radius: 10%;
-  opacity: .9;
+  opacity: .7;
+  border-style:solid;
+  border-width: 1px;
+  border-color: #c3e0d9;
 
 }
 
-
+.infoBox p{
+	top: 50px;
+	left: 20px;
+	padding: 30px;
+}
 
 .contant {
 	border-top-style: solid;
