@@ -284,7 +284,8 @@ function movment() {
 	// space Key Pressed
   else if ( keys[32]){  
 		console.log('you Pressed the space key')
-		creatDialog('Paused', window.gameInformation['puseWindow'] ,'\rrecources\\pause.gif',300 );
+		creatDialog('Paused', window.gameInformation['puseWindow'] ,'\rrecources\\pause.gif',300,
+		function() { $(".infoBox").effect( "bounce", {times:3}, 300 ); })
 
   }
   else if (keys[38]){ 
