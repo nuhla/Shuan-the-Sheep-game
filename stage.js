@@ -21,6 +21,7 @@ var shuna=$('#shaun');
 var rightToleft=false;
 var play=false;
 
+
 window.gameInformation={
 	abouMe:'<strong>Nuhla al Masri </strong> 33 years old from Palestine Ramallah . she finished her studies at AAUJ Jenen in 2008 .'+
 	'Nuhla designed this game as a samll project for the prepration phase of here training in <strong>RBK</strong> -cohort7-jordan.',
@@ -31,7 +32,8 @@ window.gameInformation={
 
 	Instructions:"this game is based on the keyboard arrow  <strong> Up - Right - Left</strong> as show bellow .<br> "+
 	"the Right Arrow to move Right . <br>" +
-	"the left Arrow to move Right ,and " +"the Up Arrow to jumb"
+	"the left Arrow to move Right ,and " +"the Up Arrow to jumb",
+	puseWindow: "Press the X button to Exit Puase Dialoge"
 }
 /// game pages contents
 
@@ -178,17 +180,47 @@ function aboutGame(){
 		img='\rrecources\\keyboard-arrows-512.png';
 		Title=" Instructions";
 	}
-	str="<div class='infoBox' ><img  id='closeDiv' src='\rrecources\\close-icon-png-18.jpg'><h3>"+Title+"</h3><p>"+
-	temp+"</p> <div><img style='width=50% height=50%' src='"+img+"'></div></div>"
+
+	// create the dialog for each button alone
+	creatDialog(Title , temp ,img,300 );
+	
+}
+
+///////////////////////////////////////////// a function to Create A dialog for all /////////////////////////////////////////
+function creatDialog(title , subject ,img,speed ,callbackfunction){
+	var str="";
+	if(callbackfunction=== undefined){
+		callbackfunction= function(){ console.log('new function')}
+	}
+
+	if(title === undefined){
+		title ="New Title";
+	}
+
+	if(subject === undefined){
+		subject="New Subject";
+	}
+
+	if(img === undefined){
+		subject="\rrecources\\close-button-png-30242.png";
+	}
+	if(speed===undefined){
+		speed=300;
+	}
+
+	str="<div class='infoBox' ><img  id='closeDiv' src='\rrecources\\close-icon-png-18.jpg'><h3>"+title+"</h3><p>"+
+	subject+"</p> <div><img style='width=50% height=50%' src='"+img+"'></div></div>"
 	$('body').append(str);
-	$('.infoBox').animate({ height: '70%',	width:'40%' , opacity: '0.9'},300)
+	$('.infoBox').animate({ height: '70%',	width:'40%' , opacity: '0.9'},300,callbackfunction);
+
+	// unbind all other functionality tell it exit's from the dialog
 	$(document).unbind('keydown');
 	$('#abutBtn').unbind('click');
 	$('#abouMe').unbind('click');
 	$('#Instructions').unbind('click');
 
-
 }
+
 /////////////////////////////////////////////////////// KeyUp Event function /////////////////////////////////////////////////////////
 
 function getDown(e){
@@ -244,12 +276,16 @@ function movment() {
     	rightToleft=!rightToleft;
     }
     if($('#shaun').position().left>window.innerWidth ){
-    xPosti-=xPosti;
+    	xPosti-=xPosti;
   }
     xPosti+=20;
 		$('#shaun').css("left",xPosti); 
 	}
-  else if ( keys[40]){     
+	// space Key Pressed
+  else if ( keys[32]){  
+		console.log('you Pressed the space key')
+		creatDialog('Paused', window.gameInformation['puseWindow'] ,'\rrecources\\pause.gif',300 );
+
   }
   else if (keys[38]){ 
 
