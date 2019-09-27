@@ -20,8 +20,10 @@ window.level={};
 var shuna=$('#shaun');
 var rightToleft=false;
 var play=false;
-
-
+var id = -1;
+var maxwaterCount = 5;
+var waterCount =0;
+/// ///////////////////////////////////////////  object of all paragraph information   //////////////////////////////////// 
 window.gameInformation={
 	abouMe:'<strong>Nuhla al Masri </strong> 33 years old from Palestine Ramallah . she finished her studies at AAUJ Jenen in 2008 .'+
 	'Nuhla designed this game as a samll project for the prepration phase of here training in <strong>RBK</strong> -cohort7-jordan.',
@@ -35,15 +37,15 @@ window.gameInformation={
 	"the left Arrow to move Right ,and " +"the Up Arrow to jumb",
 	puseWindow: "Press the X button to Exit Puase Dialoge"
 }
-/// game pages contents
 
 
-////////////////////////////////////////////////////////////////////////array of paths ////////////////////////////////////
+//////////////////////////////////////////////////////////array of paths  for photos ////////////////////////////////////
 var paths=['recources/Gaming-Agency.png',
 'recources/wall-o-fire-1.gif',
-'recources/ee8f3d409243a8fdf1104e2ee99f0581_fire-and-brooklyn-on-pinterest-flame-clipart-with-transparent-_480-272.gif']
+'recources/ee8f3d409243a8fdf1104e2ee99f0581_fire-and-brooklyn-on-pinterest-flame-clipart-with-transparent-_480-272.gif',
+'recources/waterdrop.GIF']
 
-/// obstecals factory function
+///////////////////////////////////////////// obstecals factory function///////////////////////////////////////////////////
 function makeObslecals( height, width,css,top,dangerDegree){
 
 return { 
@@ -56,6 +58,24 @@ return {
 	dangerDegree:dangerDegree
 
 	}
+}
+
+///////////////////////////////////////////// water factory function////////////////////////////////////////////////////////////
+function makeWater(){
+
+return { 
+	
+	img :paths[paths.length-1],
+	height:7,
+	width:7,
+	css:"water",
+	left:RandomPositionX(),
+	id:creatIDs(),
+	top:0,
+	tag:"<div class='water' id='water"+id+"'><img  src='"+paths[paths.length-1]
+	 +"'style='width:"+7+"%; height:"+7+"%; '></div>"
+	}
+
 }
 
 /////////////////////////////////// close dialoge function ///////////////////////////////////////////////////////////////////////
@@ -80,7 +100,7 @@ $('body').on('click', '#closeDiv', function(e){
 
 ////////////////////////////////////////////////////////////////////////////random function for position and imges///////////
 function randObImg(){
-num = Math.floor(Math.random()*paths.length)
+num = Math.floor(Math.random()*(paths.length-1));
 return num;
 }
 
@@ -92,11 +112,42 @@ function RandomPositionX(){
 	return RandomPositionX();
 }
 
+function RandomPositionSpeed(){
+	
+	num = Math.floor(Math.random()*15000);
+		if(num<7000)
+			RandomPositionSpeed();
+
+	return num;
+}
+function creatIDs(){
+	++id;
+	return id;
+}
+
 
 ////////////////////////////////////////////////////////// start creating obscales element inside the body/////////////////////
-for(var i =0 ; i<paths.length ; i++){
+for(var i =0 ; i<paths.length-1 ; i++){
+
+	//create opsticals 
 	ob=makeObslecals(50,50,'obselcals',300,10);
 	obs.push(ob);
+
+	// creat water drops 
+	var e = makeWater(e);
+	$('body').append(e.tag);
+	++waterCount;
+	 $('#water'+e.id).css("left",e.left);
+	 $('#water'+e.id).css("top",e.top);
+	 /// add animation to the water drop
+	 $('#water'+e.id).animate({ top: window.innerHeight},RandomPositionSpeed(), function(){
+	 // when we finish the animation we remove the drop from the HTML Drop
+	 	$('div').remove('#'+$(this)[0]['id']);
+
+	--waterCount;
+	 });
+
+
 
 	 $('body').append("<div class='"+ ob.css+"' id='imgnum"+i+"'><img  src='"+ob.img 
 	 +"'style='width:"+ob.width+"px; height:"+ob.height+"px;'></div>");
@@ -133,7 +184,7 @@ $('#autoPlay').on('click',toggelSound);
 
 // the event function for the listner 
 function toggelSound(e){
-	debugger
+	
 	// toggel the sound play
 	play=!play;
 	
@@ -226,7 +277,7 @@ function creatDialog(title , subject ,img,speed ,callbackfunction){
 /////////////////////////////////////////////////////// KeyUp Event function /////////////////////////////////////////////////////////
 
 function getDown(e){
-	//debugger
+
 	if(e.keyCode ===38){
 
 		tPosition=initailPosition;
@@ -243,6 +294,22 @@ setInterval( movment , 3000/perScound );
 
 
 function movment() {
+
+// check if we can create water drop in the scen depending on the max numbers of water drops for each level
+if(waterCount<maxwaterCount){
+var e = makeWater(e);
+	$('body').append(e.tag);
+		++waterCount;
+	 $('#water'+e.id).css("left",e.left);
+	 $('#water'+e.id).css("top",e.top);
+	 /// add animation to the water drop
+	 $('#water'+e.id).animate({ top: window.innerHeight},RandomPositionSpeed(), function(){
+	 // when we finish the animation we remove the drop from the HTML Drop
+	 	$('div').remove('#'+$(this)[0]['id']);
+		--waterCount;
+
+	 });
+}
 //search for the obst that touch's shuna between a range of the obsecal size
 	for(var i = 0 ; i< obtcls.length ; i++){
 		if(shuna.position().left > $("#"+obtcls[i]).position().left-$("#"+obtcls[i]).width() && 
@@ -263,6 +330,10 @@ function movment() {
 		}
   
   if (keys[37]) {
+  	if($('#shaun').position().left<0){
+  		xPosti=0;
+  	}
+  	else{
 		xPosti-=20;
 		$('#shaun').css("left",xPosti);  
 		if(!rightToleft){
@@ -271,7 +342,9 @@ function movment() {
     		rightToleft=!rightToleft;
     }
   }
+}
   else if ( keys[39]) {
+
   	if(rightToleft){
   		// flip the image of the sheep when it turn right
     	$('#myImg').css({ '-webkit-transform': 'scaleX(1)','transform': 'scaleX(1)'}); 
@@ -294,11 +367,24 @@ function movment() {
 
  	  tPosition-=20;
   	xPosti +=20;
- 		 if($('#shaun').position().top>500)
-    	tPosition+=20;
-		$('#shaun').css("top",tPosition);
-		$('#shaun').css("left",xPosti); 
+  	if(!rightToleft){
+ 			if($('#shaun').position().top>500)
+    		tPosition+=20;
+			$('#shaun').css("top",tPosition);
+			$('#shaun').css("left",xPosti); 
+		}
+		 else{
+  			xPosti =xPosti-20;
+  		if($('#shaun').position().top>500){
+    		tPosition-=20;
+  		}
+  		xPosti =xPosti-20;
+			$('#shaun').css("top",tPosition);
+			$('#shaun').css("left",xPosti); 
+
   }
+  }
+ 
 
 }
 })

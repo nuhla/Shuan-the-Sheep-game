@@ -23,7 +23,7 @@ body{
 	display: inline-flex;
 	position:absolute;
 	opacity: 1;
-	height: 200px;
+	height: 220px;
 	top: 0px;
 	width: 100%;
   z-index: 2;
@@ -159,13 +159,38 @@ p{
 	left: 20px;
 	padding: 20px;
 }
+#waterPar{
+text-align: center;
+	vertical-align: middle;
+	width: 30%;
+	height:15px;
+	position:absolute;
+	background-color: #056d96;
+	z-index: 112;
+	border-radius: 8px;
+}
+
+#waterslider{
+		position: static;
+ 	top: 15px;
+ 	width: 97%;
+ 	background-image: linear-gradient(to left,#fffb00,  #fc5d00,#a61212,#8c0000);
+ 	height: 60%;
+ 	z-index: 106; 
+ 	margin:  5px;
+ 	border-style: solid;
+ 	border-width: 1px;
+ 	border-top-color: #a61212;
+ 	border-radius: 5px;
+
+}
 
 .contant {
 	border-top-style: solid;
 	border-width: 2px 2px 2px 2px;
   border-color: #cccccc;
   display: inline-flex;
-  background-image: url('\recources\\4.png'); 
+  background-image: url('\recources\\3.PNG'); 
   background-color: #cccccc;
   height: 600px; 
 
@@ -175,6 +200,9 @@ p{
   
 }
 .obselcals{
+	position: absolute;
+}
+.water{
 	position: absolute;
 }
 
