@@ -65,7 +65,7 @@ $('body').on('click', '#closeDiv', function(e){
 		$('.infoBox').hide("puff", {}, 300 ,function(){
 			$('div').remove('.infoBox');
 
-		});
+		});g
 //Re bind the document keydown and aboutgame button events
 	$('#abutBtn').on('click',aboutGame);
 	$('#abouMe').on('click',aboutGame);
@@ -132,6 +132,7 @@ $('#autoPlay').on('click',toggelSound);
 
 // the event function for the listner 
 function toggelSound(e){
+	debugger
 	// toggel the sound play
 	play=!play;
 	
@@ -285,7 +286,7 @@ function movment() {
   else if ( keys[32]){  
 		console.log('you Pressed the space key')
 		creatDialog('Paused', window.gameInformation['puseWindow'] ,'\rrecources\\pause.gif',50,
-		function() { $('.infoBox').effect( "bounce", {times:4}, 300 ); })
+		function() { $('.infoBox').effect( "bounce", {times:2}, 300 ); })
 
   }
   else if (keys[38]){ 
