@@ -64,14 +64,15 @@ $('body').on('click', '#closeDiv', function(e){
 	//create an animation to disapear the info box of the game , and after the animation is finishes the info box is removed from DOM 
 		$('.infoBox').hide("puff", {}, 300 ,function(){
 			$('div').remove('.infoBox');
+			//Re bind the document keydown and aboutgame button events
+			$('#abutBtn').on('click',aboutGame);
+			$('#abouMe').on('click',aboutGame);
+			$('#Instructions').on('click',aboutGame);
+			$(document).on('keydown', function(e){
+			keys[e.keyCode]=true;
 
-		});g
-//Re bind the document keydown and aboutgame button events
-	$('#abutBtn').on('click',aboutGame);
-	$('#abouMe').on('click',aboutGame);
-	$('#Instructions').on('click',aboutGame);
-	$(document).on('keydown', function(e){
-		keys[e.keyCode]=true;
+		});
+
 	});
 
 })
