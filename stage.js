@@ -58,11 +58,11 @@ return {
 	}
 }
 
-
+/////////////////////////////////// close dialoge function ///////////////////////////////////////////////////////////////////////
 // add an event listener to the the document for the close button click
 $('body').on('click', '#closeDiv', function(e){
 	//create an animation to disapear the info box of the game , and after the animation is finishes the info box is removed from DOM 
-		$('.infoBox').animate({ height: '0%',	width:'0%' , opacity: '0'},300,function(){
+		$('.infoBox').hide("puff", {}, 300 ,function(){
 			$('div').remove('.infoBox');
 
 		});
@@ -284,8 +284,8 @@ function movment() {
 	// space Key Pressed
   else if ( keys[32]){  
 		console.log('you Pressed the space key')
-		creatDialog('Paused', window.gameInformation['puseWindow'] ,'\rrecources\\pause.gif',300,
-		function() { $(".infoBox").effect( "bounce", {times:3}, 300 ); })
+		creatDialog('Paused', window.gameInformation['puseWindow'] ,'\rrecources\\pause.gif',50,
+		function() { $('.infoBox').effect( "bounce", {times:4}, 300 ); })
 
   }
   else if (keys[38]){ 
